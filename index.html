@@ -1,0 +1,1122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="icon" href="favicon.png" type="image/png" sizes="16x16">
+
+
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100&display=swap"
+        rel="stylesheet">
+
+
+
+
+    <!-- HIGHCHARTS SCRIPT -->
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/bullet.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+
+
+
+
+
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+ -->
+
+
+
+    <script type="module" src="https://d3js.org/d3.v6.min.js"></script>
+
+
+
+
+    <link href="style.css" rel="stylesheet">
+
+    <script src="script.js"></script>
+
+
+
+    <title>Distributor Dashboard</title>
+</head>
+
+
+
+
+<body>
+
+
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-primary mb-0">
+        <div class="flex-row d-flex">
+            <button type="button" class="navbar-toggler mr-2 " data-toggle="offcanvas"
+                title="Toggle responsive left sidebar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <a class="navbar-brand align-middle" href="#"> <img src="dashboardLogo.png" alt="dashboard logo"
+                    style="width:40px;height:40px;"> <b> DISTRIBUTOR DASHBOARD</b></a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="collapsingNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">Home</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/filmdist/filmdist.github.io">Code </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <div class="container-fluid  " id="main">
+        <div class="row row-offcanvas row-offcanvas-left">
+            <div class="col-md-3 col-lg-2 sidebar-offcanvas pl-0" id="sidebar" role="navigation">
+                <ul class="nav flex-column sticky-top pl-0 pt-5 mt-3">
+
+
+                    <li class="nav-item pl-2 mb-2 mr-0 pr-0  mt-3 pt-3">
+
+                        <label for="selectStudio"> Chose a US Cinema Distributor:</label>
+
+                        <input list="selecStudio" onfocus="this.value=''" onchange="this.blur();" value="all"
+                            name="browser" id="selectStudio" class="selectStyle">
+                        <datalist name="selectStudio" id="selecStudio">
+                            <option value="all">all </option>
+                            <option value="Walt Disney Studios Motion Pictures">Walt Disney Studios Motion Pictures
+                            </option>
+                            <option value="Warner Bros.">Warner Bros.</option>
+                            <option value="Universal Pictures">Universal Pictures</option>
+                            <option value="Twentieth Century Fox">Twentieth Century Fox</option>
+                            <option value="Paramount Pictures">Paramount Pictures</option>
+                            <option value="Sony Pictures">Sony Pictures</option>
+                            <option value="Lionsgate">Lionsgate</option>
+                            <option value="New Line Cinema">New Line Cinema</option>
+                            <option value="Columbia Pictures">Columbia Pictures</option>
+                            <option value="Metro-Goldwyn-Mayer (MGM)">Metro-Goldwyn-Mayer (MGM)</option>
+                            <option value="Miramax">Miramax</option>
+                            <option value="DreamWorks Distribution">DreamWorks Distribution</option>
+                            <option value="TriStar Pictures">TriStar Pictures</option>
+                            <option value="DreamWorks">DreamWorks</option>
+                            <option value="Fox Searchlight Pictures">Fox Searchlight Pictures</option>
+                            <option value="IMAX">IMAX</option>
+                            <option value="Focus Features">Focus Features</option>
+                            <option value="The Weinstein Company">The Weinstein Company</option>
+                            <option value="Screen Gems">Screen Gems</option>
+                            <option value="Orion Pictures">Orion Pictures</option>
+                            <option value="Revolution Studios">Revolution Studios</option>
+                            <option value="Summit Entertainment">Summit Entertainment</option>
+                            <option value="Dimension Films">Dimension Films</option>
+                            <option value="STX Entertainment">STX Entertainment</option>
+                            <option value="United Artists">United Artists</option>
+                            <option value="Relativity Media">Relativity Media</option>
+                            <option value="Open Road Films (II)">Open Road Films (II)</option>
+                            <option value="IFC Films">IFC Films</option>
+                            <option value="A24">A24</option>
+                            <option value="Roadside Attractions">Roadside Attractions</option>
+                            <option value="Newmarket Films">Newmarket Films</option>
+                            <option value="Overture Films">Overture Films</option>
+                            <option value="Gramercy Pictures (I)">Gramercy Pictures (I)</option>
+                            <option value="The Samuel Goldwyn Company">The Samuel Goldwyn Company</option>
+                            <option value="Artisan Entertainment">Artisan Entertainment</option>
+                            <option value="FilmDistrict">FilmDistrict</option>
+                            <option value="CBS Films">CBS Films</option>
+                            <option value="USA Films">USA Films</option>
+                            <option value="United Artists Releasing">United Artists Releasing</option>
+                            <option value="Paramount Vantage">Paramount Vantage</option>
+                            <option value="Cannon Film Distributors">Cannon Film Distributors</option>
+                            <option value="Fine Line Features">Fine Line Features</option>
+                            <option value="Neon">Neon</option>
+                            <option value="Rogue Pictures">Rogue Pictures</option>
+                            <option value="Warner Independent Pictures (WIP)">Warner Independent Pictures (WIP)</option>
+                            <option value="New World Pictures">New World Pictures</option>
+                            <option value="Bleecker Street Media">Bleecker Street Media</option>
+                            <option value="Freestyle Releasing">Freestyle Releasing</option>
+                            <option value="National Geographic Entertainment">National Geographic Entertainment</option>
+                            <option value="Embassy Pictures">Embassy Pictures</option>
+                            <option value="MacGillivray Freeman Films">MacGillivray Freeman Films</option>
+                            <option value="Magnolia Pictures">Magnolia Pictures</option>
+                            <option value="Annapurna Pictures">Annapurna Pictures</option>
+                            <option value="Entertainment Studios Motion Pictures">Entertainment Studios Motion Pictures
+                            </option>
+                            <option value="De Laurentiis Entertainment Group (DEG)">De Laurentiis Entertainment Group
+                                (DEG)</option>
+                            <option value="Pure Flix Entertainment">Pure Flix Entertainment</option>
+                            <option value="Picturehouse">Picturehouse</option>
+                            <option value="Paramount Classics">Paramount Classics</option>
+                            <option value="Pantelion Films">Pantelion Films</option>
+                            <option value="Eros International">Eros International</option>
+                            <option value="Atlantic Releasing Corporation">Atlantic Releasing Corporation</option>
+                            <option value="Broad Green Pictures">Broad Green Pictures</option>
+                            <option value="UTV Motion Pictures">UTV Motion Pictures</option>
+                            <option value="October Films">October Films</option>
+                            <option value="Fathom Events">Fathom Events</option>
+                            <option value="Triumph Releasing Corporation">Triumph Releasing Corporation</option>
+                            <option value="Yash Raj Films">Yash Raj Films</option>
+                            <option value="20th Century Studios">20th Century Studios</option>
+                            <option value="American International Pictures (AIP)">American International Pictures (AIP)
+                            </option>
+                            <option value="Vestron Pictures">Vestron Pictures</option>
+                            <option value="IDP Distribution">IDP Distribution</option>
+                            <option value="Aviron Pictures">Aviron Pictures</option>
+                            <option value="Music Box Films">Music Box Films</option>
+                            <option value="SK Films">SK Films</option>
+                            <option value="THINKFilm">THINKFilm</option>
+                            <option value="BH Tilt">BH Tilt</option>
+                            <option value="Trimark Pictures">Trimark Pictures</option>
+                            <option value="FUNimation Entertainment">FUNimation Entertainment</option>
+                            <option value="Destination Films">Destination Films</option>
+                            <option value="Giant Screen Films">Giant Screen Films</option>
+                            <option value="Well Go USA Entertainment">Well Go USA Entertainment</option>
+                            <option value="Alliance Atlantis Vivafilm">Alliance Atlantis Vivafilm</option>
+                            <option value="Studio 8">Studio 8</option>
+                            <option value="Cinecom Pictures">Cinecom Pictures</option>
+                            <option value="Amazon Studios">Amazon Studios</option>
+                            <option value="Rocky Mountain Pictures">Rocky Mountain Pictures</option>
+                            <option value="PolyGram">PolyGram</option>
+                            <option value="Affirm Films">Affirm Films</option>
+                            <option value="EuropaCorp">EuropaCorp</option>
+                            <option value="FIP">FIP</option>
+                            <option value="Apparition">Apparition</option>
+                            <option value="Reliance Big Pictures">Reliance Big Pictures</option>
+                            <option value="Yari Film Group Releasing">Yari Film Group Releasing</option>
+                            <option value="RADiUS-TWC">RADiUS-TWC</option>
+                            <option value="Hemdale">Hemdale</option>
+                            <option value="New Century">New Century</option>
+                            <option value="Crown">Crown</option>
+                            <option value="Orion Classics">Orion Classics</option>
+                            <option value="Island Alive">Island Alive</option>
+                            <option value="Entertainment One">Entertainment One</option>
+                            <option value="3D Entertainment">3D Entertainment</option>
+                            <option value="Cohen Media Group">Cohen Media Group</option>
+                            <option value="China Lion Film Distribution">China Lion Film Distribution</option>
+                            <option value="First Look International">First Look International</option>
+                            <option value="Clarius Entertainment">Clarius Entertainment</option>
+                            <option value="GKIDS">GKIDS</option>
+                            <option value="Island Pictures">Island Pictures</option>
+                            <option value="Providence Entertainment">Providence Entertainment</option>
+                            <option value="Oscilloscope">Oscilloscope</option>
+                            <option value="Zeitgeist Films">Zeitgeist Films</option>
+                            <option value="Odeon">Odeon</option>
+                            <option value="CJ Entertainment">CJ Entertainment</option>
+                            <option value="The Orchard">The Orchard</option>
+                            <option value="101 Studios">101 Studios</option>
+                            <option value="Viva Pictures">Viva Pictures</option>
+                            <option value="Great India Films">Great India Films</option>
+                            <option value="Shorts International">Shorts International</option>
+                            <option value="Atlas Distribution Company">Atlas Distribution Company</option>
+                            <option value="Purdie Distribution">Purdie Distribution</option>
+                            <option value="Strand Releasing">Strand Releasing</option>
+                            <option value="Solstice Studios">Solstice Studios</option>
+                            <option value="Millennium Entertainment">Millennium Entertainment</option>
+                            <option value="Excel Entertainment">Excel Entertainment</option>
+                            <option value="Avenue Pictures Productions">Avenue Pictures Productions</option>
+                            <option value="Abramorama">Abramorama</option>
+                            <option value="Trafalgar Releasing">Trafalgar Releasing</option>
+                            <option value="Lorimar Motion Pictures">Lorimar Motion Pictures</option>
+                            <option value="Greenwich Entertainment">Greenwich Entertainment</option>
+                            <option value="Saban Films">Saban Films</option>
+                            <option value="LD Entertainment">LD Entertainment</option>
+                            <option value="Skouras Pictures">Skouras Pictures</option>
+                            <option value="New Yorker Films">New Yorker Films</option>
+                            <option value="Wellspring Media">Wellspring Media</option>
+                            <option value="CMC Pictures">CMC Pictures</option>
+                            <option value="Kino Lorber">Kino Lorber</option>
+                            <option value="Anchor Bay Films">Anchor Bay Films</option>
+                            <option value="8x Entertainment">8x Entertainment</option>
+                            <option value="Good Deed Entertainment">Good Deed Entertainment</option>
+                            <option value="Empire Pictures">Empire Pictures</option>
+                            <option value="Indican Pictures">Indican Pictures</option>
+                            <option value="Concorde Pictures">Concorde Pictures</option>
+                            <option value="First Run">First Run</option>
+                            <option value="Dragon Dynasty">Dragon Dynasty</option>
+                            <option value="Christal Films">Christal Films</option>
+                            <option value="Vivendi Entertainment">Vivendi Entertainment</option>
+                            <option value="Shadow Distribution">Shadow Distribution</option>
+                            <option value="truTV">truTV</option>
+                            <option value="Roxie Releasing">Roxie Releasing</option>
+                            <option value="Regent Releasing">Regent Releasing</option>
+                            <option value="Janus Films">Janus Films</option>
+                            <option value="Menemsha Films">Menemsha Films</option>
+                            <option value="Searchlight Pictures">Searchlight Pictures</option>
+                            <option value="Lot 47 Films">Lot 47 Films</option>
+                            <option value="Blue Sky Cinema">Blue Sky Cinema</option>
+                            <option value="Cowboy Pictures">Cowboy Pictures</option>
+                            <option value="GathrFilms">GathrFilms</option>
+                            <option value="Kino International">Kino International</option>
+                            <option value="Five & Two Pictures">Five & Two Pictures</option>
+                            <option value="Arc Entertainment">Arc Entertainment</option>
+                            <option value="R.S. Entertainment">R.S. Entertainment</option>
+                            <option value="Triton Pictures">Triton Pictures</option>
+                            <option value="Palm Pictures">Palm Pictures</option>
+                            <option value="Adlabs Films">Adlabs Films</option>
+                            <option value="International Film Circuit">International Film Circuit</option>
+                            <option value="Drafthouse Films">Drafthouse Films</option>
+                            <option value="Vertical Entertainment">Vertical Entertainment</option>
+                            <option value="Rialto Pictures">Rialto Pictures</option>
+                            <option value="Spanglish Movies">Spanglish Movies</option>
+                            <option value="Slowhand Cinema Releasing">Slowhand Cinema Releasing</option>
+                            <option value="FilmRise">FilmRise</option>
+                            <option value="Fox Atomic">Fox Atomic</option>
+                            <option value="The Cinema Guild">The Cinema Guild</option>
+                            <option value="Taurus Entertainment Company">Taurus Entertainment Company</option>
+                            <option value="Eleven Arts">Eleven Arts</option>
+                            <option value="Screen Media Films">Screen Media Films</option>
+                            <option value="The Film Arcade">The Film Arcade</option>
+                            <option value="Electric Entertainment">Electric Entertainment</option>
+                            <option value="Alive Films">Alive Films</option>
+                            <option value="Vitagraph Films">Vitagraph Films</option>
+                            <option value="Cinelou Films">Cinelou Films</option>
+                            <option value="Televisa Cine">Televisa Cine</option>
+                            <option value="Rainbow Releasing">Rainbow Releasing</option>
+                            <option value="Corsair Pictures">Corsair Pictures</option>
+                            <option value="Gunpowder & Sky">Gunpowder & Sky</option>
+                            <option value="Innovation Film Group (IFG)">Innovation Film Group (IFG)</option>
+                            <option value="Film Movement">Film Movement</option>
+                            <option value="Strasson Group">Strasson Group</option>
+                            <option value="EchoLight Studios">EchoLight Studios</option>
+                            <option value="Area 23a">Area 23a</option>
+                            <option value="Arenas Entertainment">Arenas Entertainment</option>
+                            <option value="GVN Releasing">GVN Releasing</option>
+                            <option value="Submarine Deluxe">Submarine Deluxe</option>
+                            <option value="ArtAffects Entertainment">ArtAffects Entertainment</option>
+                            <option value="Elevation Pictures">Elevation Pictures</option>
+                            <option value="Gravitas Ventures">Gravitas Ventures</option>
+                            <option value="Variance Films">Variance Films</option>
+                            <option value="Cloudburst Entertainment">Cloudburst Entertainment</option>
+                            <option value="Vineyard Distribution">Vineyard Distribution</option>
+                            <option value="High Top Releasing">High Top Releasing</option>
+                            <option value="Focus World">Focus World</option>
+                            <option value="Empire Pictures Inc.">Empire Pictures Inc.</option>
+                            <option value="Screenvision">Screenvision</option>
+                            <option value="Cinedigm Entertainment Group">Cinedigm Entertainment Group</option>
+                            <option value="Avatar Films">Avatar Films</option>
+                            <option value="Cineville">Cineville</option>
+                            <option value="Troma">Troma</option>
+                            <option value="Independent Artists">Independent Artists</option>
+                            <option value="Adopt Films">Adopt Films</option>
+                            <option value="Artistic License">Artistic License</option>
+                            <option value="First National Film Corporation">First National Film Corporation</option>
+                            <option value="Aries Films">Aries Films</option>
+                            <option value="Castle Hill Productions">Castle Hill Productions</option>
+                            <option value="TLA Releasing">TLA Releasing</option>
+                            <option value="Panorama Entertainment">Panorama Entertainment</option>
+                            <option value="RLJE Films">RLJE Films</option>
+                            <option value="Good Machine">Good Machine</option>
+                            <option value="PBS Distribution">PBS Distribution</option>
+                            <option value="Studio 18">Studio 18</option>
+                            <option value="Cinema Libre Studio">Cinema Libre Studio</option>
+                            <option value="Alchemy">Alchemy</option>
+                            <option value="The H Collective">The H Collective</option>
+                            <option value="Tribeca Film">Tribeca Film</option>
+                            <option value="IRS Media">IRS Media</option>
+                            <option value="Zipporah Films">Zipporah Films</option>
+                            <option value="Icarus Films">Icarus Films</option>
+                            <option value="Tartan">Tartan</option>
+                            <option value="Truly Indie">Truly Indie</option>
+                            <option value="Faith Media Distribution">Faith Media Distribution</option>
+                            <option value="Romar Entertainment">Romar Entertainment</option>
+                            <option value="ATO Pictures">ATO Pictures</option>
+                            <option value="Amplify">Amplify</option>
+                            <option value="Mongrel Media">Mongrel Media</option>
+                            <option value="Liberty Studios">Liberty Studios</option>
+                            <option value="Media Partners">Media Partners</option>
+                            <option value="Koch Lorber Films">Koch Lorber Films</option>
+                            <option value="Hammond Entertainment">Hammond Entertainment</option>
+                            <option value="Five Sisters Productions">Five Sisters Productions</option>
+                            <option value="Imperial Entertainment">Imperial Entertainment</option>
+                            <option value="Trans World Entertainment (TWE)">Trans World Entertainment (TWE)</option>
+                            <option value="Thinking Man Films">Thinking Man Films</option>
+                            <option value="Emerging Pictures">Emerging Pictures</option>
+                            <option value="Third Rail Releasing">Third Rail Releasing</option>
+                            <option value="The Film Desk">The Film Desk</option>
+                            <option value="Stage 6 Films">Stage 6 Films</option>
+                            <option value="First Independent Pictures">First Independent Pictures</option>
+                            <option value="Dada Films">Dada Films</option>
+                            <option value="Libero">Libero</option>
+                            <option value="Universal Home Video">Universal Home Video</option>
+                            <option value="Page 124 Productions">Page 124 Productions</option>
+                            <option value="Apollo Associates">Apollo Associates</option>
+                            <option value="Balcony Releasing">Balcony Releasing</option>
+                            <option value="Elephant Eye Films">Elephant Eye Films</option>
+                            <option value="WinStar Cinema">WinStar Cinema</option>
+                            <option value="Aascar Film">Aascar Film</option>
+                            <option value="Hannover House">Hannover House</option>
+                            <option value="Codeblack Entertainment">Codeblack Entertainment</option>
+                            <option value="Seventh Art Releasing">Seventh Art Releasing</option>
+                            <option value="Argot Pictures">Argot Pictures</option>
+                            <option value="Monterey Media">Monterey Media</option>
+                            <option value="Video Sound">Video Sound</option>
+                            <option value="Paladin">Paladin</option>
+                            <option value="Four Square">Four Square</option>
+                            <option value="InYo Entertainment">InYo Entertainment</option>
+                            <option value="CanZion Films">CanZion Films</option>
+                            <option value="LifeWay Films">LifeWay Films</option>
+                            <option value="City Lights Pictures">City Lights Pictures</option>
+                            <option value="Kenn Viselman Presents">Kenn Viselman Presents</option>
+                            <option value="Ten Furlongs">Ten Furlongs</option>
+                            <option value="Ketchup Entertainment">Ketchup Entertainment</option>
+                            <option value="RCR Distribution">RCR Distribution</option>
+                            <option value="Quiver Distribution">Quiver Distribution</option>
+                            <option value="American Experience Films">American Experience Films</option>
+                            <option value="BritBox">BritBox</option>
+                            <option value="Republic Pictures (I)">Republic Pictures (I)</option>
+                            <option value="MAC Releasing">MAC Releasing</option>
+                            <option value="Nocturnal Features">Nocturnal Features</option>
+                            <option value="Grasshopper Film">Grasshopper Film</option>
+                            <option value="Candlelight Media Group">Candlelight Media Group</option>
+                            <option value="Lorber Films">Lorber Films</option>
+                            <option value="518 Media">518 Media</option>
+                            <option value="The Vladar Company">The Vladar Company</option>
+                            <option value="Capelight Pictures">Capelight Pictures</option>
+                            <option value="Arrow Releasing">Arrow Releasing</option>
+                            <option value="Starz Digital Media">Starz Digital Media</option>
+                            <option value="The Film Collaborative">The Film Collaborative</option>
+                            <option value="Distrib Films">Distrib Films</option>
+                            <option value="Long Shot Factory">Long Shot Factory</option>
+                            <option value="Loki Films">Loki Films</option>
+                            <option value="Blue Fox Entertainment">Blue Fox Entertainment</option>
+                            <option value="CMC Pictures Holdings">CMC Pictures Holdings</option>
+                            <option value="Arthouse Films">Arthouse Films</option>
+                            <option value="Crane Movie Company">Crane Movie Company</option>
+                            <option value="Outrider Pictures">Outrider Pictures</option>
+                            <option value="1091 Media">1091 Media</option>
+                            <option value="ABKCO Films">ABKCO Films</option>
+                            <option value="After Dark Films">After Dark Films</option>
+                            <option value="Tugg">Tugg</option>
+                            <option value="Outsider Films">Outsider Films</option>
+                            <option value="Pan Media & Entertainment">Pan Media & Entertainment</option>
+                            <option value="Access Entertainment">Access Entertainment</option>
+                            <option value="Maya Entertainment">Maya Entertainment</option>
+                            <option value="Matson Films">Matson Films</option>
+                            <option value="RAM Entertainment">RAM Entertainment</option>
+                            <option value="Silver Nitrate">Silver Nitrate</option>
+                            <option value="Caledonia Pictures">Caledonia Pictures</option>
+                            <option value="International Film Marketing">International Film Marketing</option>
+                            <option value="Big World Pictures">Big World Pictures</option>
+                            <option value="Northern Arts Entertainment">Northern Arts Entertainment</option>
+                            <option value="Ocean Avenue Entertainment">Ocean Avenue Entertainment</option>
+                            <option value="Image Entertainment">Image Entertainment</option>
+                            <option value="Global View Entertainment">Global View Entertainment</option>
+                            <option value="Ciesla Foundation">Ciesla Foundation</option>
+                            <option value="American Zoetrope">American Zoetrope</option>
+                            <option value="Echo Bridge Entertainment">Echo Bridge Entertainment</option>
+                            <option value="Bond/360">Bond/360</option>
+                            <option value="Lovett Releasing">Lovett Releasing</option>
+                            <option value="XLrator Media">XLrator Media</option>
+                            <option value="Sundance Film Series">Sundance Film Series</option>
+                            <option value="JBG Pictures">JBG Pictures</option>
+                            <option value="Sky Island Films">Sky Island Films</option>
+                            <option value="Reliance Entertainment">Reliance Entertainment</option>
+                            <option value="Arrival Pictures">Arrival Pictures</option>
+                            <option value="RBC Radio">RBC Radio</option>
+                            <option value="Expanded Entertainment">Expanded Entertainment</option>
+                            <option value="Fair Trade Pictures">Fair Trade Pictures</option>
+                            <option value="Cyan Pictures">Cyan Pictures</option>
+                            <option value="Fabrication Films">Fabrication Films</option>
+                            <option value="Tentmakers Entertainment">Tentmakers Entertainment</option>
+                            <option value="Pryor Entertainment">Pryor Entertainment</option>
+                            <option value="Gaumont British Picture Corporation">Gaumont British Picture Corporation
+                            </option>
+                            <option value="Films Philos">Films Philos</option>
+                            <option value="Liberation Entertainment">Liberation Entertainment</option>
+                            <option value="Full Circle Releasing">Full Circle Releasing</option>
+                            <option value="Lionsgate Premiere">Lionsgate Premiere</option>
+                            <option value="Cinema Purgatorio">Cinema Purgatorio</option>
+                            <option value="Cinetel">Cinetel</option>
+                            <option value="Blue Collar Releasing">Blue Collar Releasing</option>
+                            <option value="Tips">Tips</option>
+                            <option value="Magic Lamp">Magic Lamp</option>
+                            <option value="Circle Films">Circle Films</option>
+                            <option value="Phaedra Cinema">Phaedra Cinema</option>
+                            <option value="MPI Media Group">MPI Media Group</option>
+                            <option value="Banner Entertainment">Banner Entertainment</option>
+                            <option value="Forewarned">Forewarned</option>
+                            <option value="Empowerment Project">Empowerment Project</option>
+                            <option value="Turbulent Arts">Turbulent Arts</option>
+                            <option value="Senator Distribution">Senator Distribution</option>
+                            <option value="Cinema Service">Cinema Service</option>
+                            <option value="Leisure Time Features">Leisure Time Features</option>
+                            <option value="Slugger Pictures">Slugger Pictures</option>
+                            <option value="JSC Entertainment">JSC Entertainment</option>
+                            <option value="Manifold Productions Inc.">Manifold Productions Inc.</option>
+                            <option value="Meadowbrook Pictures">Meadowbrook Pictures</option>
+                            <option value="Midnight Movies">Midnight Movies</option>
+                            <option value="The Bigger Picture">The Bigger Picture</option>
+                            <option value="Wolfe Releasing">Wolfe Releasing</option>
+                            <option value="Arab Film Distribution">Arab Film Distribution</option>
+                            <option value="Main Street Films">Main Street Films</option>
+                            <option value="Mitropoulos Films">Mitropoulos Films</option>
+                            <option value="Super Chief Films">Super Chief Films</option>
+                            <option value="Noujaim Films">Noujaim Films</option>
+                            <option value="Sumerian Films">Sumerian Films</option>
+                            <option value="Universal Classics">Universal Classics</option>
+                            <option value="Worldplay">Worldplay</option>
+                            <option value="Palisades Tartan">Palisades Tartan</option>
+                            <option value="Unico Entertainment">Unico Entertainment</option>
+                            <option value="Tara Releasing">Tara Releasing</option>
+                            <option value="Parallel Media">Parallel Media</option>
+                            <option value="Redwood Palms Pictures">Redwood Palms Pictures</option>
+                            <option value="FilmBuff">FilmBuff</option>
+                            <option value="Milestone">Milestone</option>
+                            <option value="Sony Pictures Repertory">Sony Pictures Repertory</option>
+                            <option value="7-57 Releasing">7-57 Releasing</option>
+                            <option value="Shooting Gallery">Shooting Gallery</option>
+                            <option value="Outsider Pictures">Outsider Pictures</option>
+                            <option value="Parade Deck Films">Parade Deck Films</option>
+                            <option value="Warrior Poets Releasing">Warrior Poets Releasing</option>
+                            <option value="Ariztical Entertainment">Ariztical Entertainment</option>
+                            <option value="Film Collective">Film Collective</option>
+                            <option value="Academy Entertainment">Academy Entertainment</option>
+                            <option value="Lantern Lane Entertainment">Lantern Lane Entertainment</option>
+                            <option value="BBC Worldwide North America">BBC Worldwide North America</option>
+                            <option value="Goodbye Cruel Releasing">Goodbye Cruel Releasing</option>
+                            <option value="First Stripe Productions">First Stripe Productions</option>
+                            <option value="Under The Milky Way">Under The Milky Way</option>
+                            <option value="Driving With Our Eyes Shut">Driving With Our Eyes Shut</option>
+                            <option value="Shout! Factory">Shout! Factory</option>
+                            <option value="Priority Films">Priority Films</option>
+                            <option value="CineLife Entertainment">CineLife Entertainment</option>
+                            <option value="CFI Releasing">CFI Releasing</option>
+                            <option value="Lang Films">Lang Films</option>
+                            <option value="California Newsreel">California Newsreel</option>
+                            <option value="Utopia">Utopia</option>
+                            <option value="Tulip Pictures">Tulip Pictures</option>
+                            <option value="Conglomerate Media">Conglomerate Media</option>
+                            <option value="Kindred Media Group">Kindred Media Group</option>
+                            <option value="Vanish Films">Vanish Films</option>
+                            <option value="Dark Coast Pictures">Dark Coast Pictures</option>
+                            <option value="Peninsula Films">Peninsula Films</option>
+                            <option value="Manga">Manga</option>
+                            <option value="Small Island Films">Small Island Films</option>
+                            <option value="New Films Cinema">New Films Cinema</option>
+                            <option value="Vital Pictures">Vital Pictures</option>
+                            <option value="Unitel Pictures">Unitel Pictures</option>
+                            <option value="Streetlight Films">Streetlight Films</option>
+                            <option value="Geneon Entertainment">Geneon Entertainment</option>
+                            <option value="Embrem Entertainment">Embrem Entertainment</option>
+                            <option value="In the Family">In the Family</option>
+                            <option value="Illuminare Entertainment">Illuminare Entertainment</option>
+                            <option value="4th Row Films">4th Row Films</option>
+                            <option value="MUBI">MUBI</option>
+                            <option value="LAMA Distribution">LAMA Distribution</option>
+                            <option value="Saboteur Media">Saboteur Media</option>
+                            <option value="Spark Media">Spark Media</option>
+                            <option value="Rogers & Cowan/PMK">Rogers & Cowan/PMK</option>
+                            <option value="Lightyear Entertainment">Lightyear Entertainment</option>
+                            <option value="Great Point Media">Great Point Media</option>
+                            <option value="Gabriel's Messenger Films">Gabriel's Messenger Films</option>
+                            <option value="IndieVest Pictures">IndieVest Pictures</option>
+                            <option value="Monument Releasing">Monument Releasing</option>
+                            <option value="Janson Media">Janson Media</option>
+                            <option value="Fader Films">Fader Films</option>
+                            <option value="Passion River Films">Passion River Films</option>
+                            <option value="Bandai">Bandai</option>
+                            <option value="Citizens United">Citizens United</option>
+                            <option value="United Entertainment Partners">United Entertainment Partners</option>
+                            <option value="Mangusta Productions">Mangusta Productions</option>
+                            <option value="Typecast Releasing">Typecast Releasing</option>
+                            <option value="Metrograph Pictures">Metrograph Pictures</option>
+                            <option value="Brainstorm Media">Brainstorm Media</option>
+                            <option value="Home Box Office (HBO)">Home Box Office (HBO)</option>
+                            <option value="Citadel Film Group">Citadel Film Group</option>
+                            <option value="Music Masala Films">Music Masala Films</option>
+                            <option value="Jetsen Huashi Media US">Jetsen Huashi Media US</option>
+                            <option value="Ammo Content">Ammo Content</option>
+                            <option value="New Love Films">New Love Films</option>
+                            <option value="Onyx Films">Onyx Films</option>
+                            <option value="Flicker Alley">Flicker Alley</option>
+                            <option value="ADV Films">ADV Films</option>
+                            <option value="Alluvial Film Company">Alluvial Film Company</option>
+                            <option value="Reel Source">Reel Source</option>
+                            <option value="Carlotta Films">Carlotta Films</option>
+                            <option value="Round Hill Media">Round Hill Media</option>
+                            <option value="Newcity">Newcity</option>
+                            <option value="Xenon Pictures">Xenon Pictures</option>
+                            <option value="Breaking Glass Pictures">Breaking Glass Pictures</option>
+                            <option value="Cavalier Films">Cavalier Films</option>
+                            <option value="Stone Five Studios">Stone Five Studios</option>
+                            <option value="House Lights Media">House Lights Media</option>
+                            <option value="Ocean Releasing">Ocean Releasing</option>
+                            <option value="InterPositive Media">InterPositive Media</option>
+                            <option value="Myriad Pictures">Myriad Pictures</option>
+                            <option value="Dreamwest Pictures">Dreamwest Pictures</option>
+                            <option value="The Ashton Times">The Ashton Times</option>
+                            <option value="Sidetrack Films">Sidetrack Films</option>
+                            <option value="120 Degree Films">120 Degree Films</option>
+                            <option value="Gorilla Factory Productions">Gorilla Factory Productions</option>
+                            <option value="National Amusements">National Amusements</option>
+                            <option value="Walking Shadows">Walking Shadows</option>
+                            <option value="Tilapia Film">Tilapia Film</option>
+                            <option value="Cinema Tropical">Cinema Tropical</option>
+                            <option value="Grassroots Films">Grassroots Films</option>
+                            <option value="Sundance Selects">Sundance Selects</option>
+                            <option value="21st Century Film Production">21st Century Film Production</option>
+                            <option value="Quadratic Media">Quadratic Media</option>
+                            <option value="Truth Aid">Truth Aid</option>
+                            <option value="Spacey">Spacey</option>
+                            <option value="New American Vision">New American Vision</option>
+                            <option value="Participant">Participant</option>
+                            <option value="S2BN Films">S2BN Films</option>
+                            <option value="Thread Cross Films">Thread Cross Films</option>
+                            <option value="Wave Releasing">Wave Releasing</option>
+                            <option value="Rockstone Releasing">Rockstone Releasing</option>
+                            <option value="Le Petit Canyon">Le Petit Canyon</option>
+                            <option value="Fine Line Media">Fine Line Media</option>
+                            <option value="Original Cinema">Original Cinema</option>
+                            <option value="Shotown Pictures">Shotown Pictures</option>
+                            <option value="Darius Films">Darius Films</option>
+                            <option value="ISA Releasing">ISA Releasing</option>
+                            <option value="Cartuna">Cartuna</option>
+                            <option value="Waldo West Productions">Waldo West Productions</option>
+                            <option value="Eammon Films">Eammon Films</option>
+                            <option value="Comedy Dynamics">Comedy Dynamics</option>
+                            <option value="Doppelganger Releasing">Doppelganger Releasing</option>
+                            <option value="Arrow Films">Arrow Films</option>
+                            <option value="ArtMattan Productions">ArtMattan Productions</option>
+                            <option value="The World According to Shorts">The World According to Shorts</option>
+                            <option value="Follow Your Nose Films">Follow Your Nose Films</option>
+                            <option value="Transatlantic">Transatlantic</option>
+                            <option value="Linn Productions">Linn Productions</option>
+                            <option value="NeoClassics Films">NeoClassics Films</option>
+                            <option value="At Risk Films">At Risk Films</option>
+                            <option value="Big Bull Productions">Big Bull Productions</option>
+                            <option value="Hey Jude Productions">Hey Jude Productions</option>
+                            <option value="Phase 4 Films">Phase 4 Films</option>
+                            <option value="Women Make Movies">Women Make Movies</option>
+                            <option value="Active Fox Productions">Active Fox Productions</option>
+                            <option value="Altered Innocence">Altered Innocence</option>
+                            <option value="Sceneries Distribution">Sceneries Distribution</option>
+                            <option value="3DLive AXO">3DLive AXO</option>
+                            <option value="Moving Visions Entertainment">Moving Visions Entertainment</option>
+                            <option value="Mypheduh Films">Mypheduh Films</option>
+                            <option value="MCR Releasing">MCR Releasing</option>
+                            <option value="Cinema Four">Cinema Four</option>
+                            <option value="Providence Film Partners">Providence Film Partners</option>
+                            <option value="25th Frame">25th Frame</option>
+                            <option value="Atopia">Atopia</option>
+                            <option value="MSK Productions">MSK Productions</option>
+                            <option value="TriCoast Worldwide">TriCoast Worldwide</option>
+                            <option value="Organic Pictures">Organic Pictures</option>
+                            <option value="Trela Media">Trela Media</option>
+                            <option value="Sagewood Cinema Ventures">Sagewood Cinema Ventures</option>
+                            <option value="Olive Films">Olive Films</option>
+                            <option value="Mountain Top Releasing">Mountain Top Releasing</option>
+                            <option value="Corinth Films">Corinth Films</option>
+                            <option value="RKO Radio Pictures">RKO Radio Pictures</option>
+                            <option value="Steelyard Pictures">Steelyard Pictures</option>
+                            <option value="Rumur Releasing">Rumur Releasing</option>
+                            <option value="Roebuck Media">Roebuck Media</option>
+                            <option value="Riot Studios">Riot Studios</option>
+                            <option value="Carusel">Carusel</option>
+                            <option value="Quixotic Media">Quixotic Media</option>
+                            <option value="Cabin Films">Cabin Films</option>
+                            <option value="Striped Entertainment">Striped Entertainment</option>
+                            <option value="Red Dirt Pictures">Red Dirt Pictures</option>
+                            <option value="Idle Wild Films">Idle Wild Films</option>
+                            <option value="Unison Films">Unison Films</option>
+                            <option value="Watchman Pictures">Watchman Pictures</option>
+                            <option value="Breakthrough Entertainment">Breakthrough Entertainment</option>
+                            <option value="Skylight Pictures">Skylight Pictures</option>
+                            <option value="GoGoGo Entertainment">GoGoGo Entertainment</option>
+                            <option value="NoCoast Artists">NoCoast Artists</option>
+                            <option value="Wonder Vision">Wonder Vision</option>
+                            <option value="Arts Alliance America">Arts Alliance America</option>
+                            <option value="El Tigre">El Tigre</option>
+                            <option value="Joma Films">Joma Films</option>
+                            <option value="Media Blasters">Media Blasters</option>
+                            <option value="WRA Productions">WRA Productions</option>
+                            <option value="Kartemquin Films">Kartemquin Films</option>
+                            <option value="Clay Way Media">Clay Way Media</option>
+                            <option value="Pioneer">Pioneer</option>
+                            <option value="Dutchmen Films">Dutchmen Films</option>
+                            <option value="Gabriel Film Group">Gabriel Film Group</option>
+                            <option value="Yellow Veil Pictures">Yellow Veil Pictures</option>
+                            <option value="Not That Kind of Movie Productions">Not That Kind of Movie Productions
+                            </option>
+                            <option value="Delaware Pictures">Delaware Pictures</option>
+                            <option value="SingularDTV">SingularDTV</option>
+                            <option value="Cockeyed Caravan">Cockeyed Caravan</option>
+                            <option value="HP Releasing">HP Releasing</option>
+                            <option value="The 7th Floor">The 7th Floor</option>
+                            <option value="GoDigital">GoDigital</option>
+                            <option value="All Rise Films">All Rise Films</option>
+                            <option value="Rogue Arts">Rogue Arts</option>
+                            <option value="Datari Turner Productions">Datari Turner Productions</option>
+                            <option value="Barking Cow Media Group">Barking Cow Media Group</option>
+                            <option value="PFM">PFM</option>
+                            <option value="7A Productions">7A Productions</option>
+                            <option value="Diversa Films">Diversa Films</option>
+                            <option value="Revolver Entertainment">Revolver Entertainment</option>
+                            <option value="Mile End Films">Mile End Films</option>
+                            <option value="Fork Films">Fork Films</option>
+                            <option value="Prime Media Pictures">Prime Media Pictures</option>
+                            <option value="High Cotton Films">High Cotton Films</option>
+                            <option value="Mandt Bros. Productions">Mandt Bros. Productions</option>
+                            <option value="Aliquot Films">Aliquot Films</option>
+                            <option value="Aspiration Entertainment">Aspiration Entertainment</option>
+                            <option value="Loop Filmworks">Loop Filmworks</option>
+                            <option value="Wildcat Releasing">Wildcat Releasing</option>
+                            <option value="Mr. Pictures">Mr. Pictures</option>
+                            <option value="Newport Films">Newport Films</option>
+                            <option value="Bonfire Films of America">Bonfire Films of America</option>
+                            <option value="Silver Plane Films">Silver Plane Films</option>
+                            <option value="Two Moon Releasing">Two Moon Releasing</option>
+                            <option value="Lafayette Films">Lafayette Films</option>
+                            <option value="Dinsdale Releasing">Dinsdale Releasing</option>
+                            <option value="7th Empire Media">7th Empire Media</option>
+                            <option value="Kicking + Screening Media Group">Kicking + Screening Media Group</option>
+                            <option value="Sumbadhat Productions">Sumbadhat Productions</option>
+                            <option value="Inspired Life">Inspired Life</option>
+                            <option value="26 Aries">26 Aries</option>
+                            <option value="Manifesto Films">Manifesto Films</option>
+                            <option value="Delphi Film Foundation">Delphi Film Foundation</option>
+                            <option value="Vanguardia Films">Vanguardia Films</option>
+                            <option value="Pro-Motion Pictures">Pro-Motion Pictures</option>
+                            <option value="Direct Cinema Limited">Direct Cinema Limited</option>
+                            <option value="Miracle Film Distribution">Miracle Film Distribution</option>
+                            <option value="Microangelo Entertainment">Microangelo Entertainment</option>
+                            <option value="Engel Entertainment">Engel Entertainment</option>
+                            <option value="Gold Cap Films">Gold Cap Films</option>
+                            <option value="Osiris Entertainment">Osiris Entertainment</option>
+                            <option value="Hansen Entertainment">Hansen Entertainment</option>
+                            <option value="Boxcar Films">Boxcar Films</option>
+                            <option value="Fox Trail Productions">Fox Trail Productions</option>
+                            <option value="Sony Pictures Home Entertainment">Sony Pictures Home Entertainment</option>
+                            <option value="HB Filmworks">HB Filmworks</option>
+                            <option value="The Only Real Game Movie">The Only Real Game Movie</option>
+                            <option value="Hanover Multimedia">Hanover Multimedia</option>
+                            <option value="Frontier Films">Frontier Films</option>
+                            <option value="K Street Pictures">K Street Pictures</option>
+                            <option value="The American Film Company">The American Film Company</option>
+                            <option value="Tidepoint Pictures">Tidepoint Pictures</option>
+                            <option value="Reel One Entertainment">Reel One Entertainment</option>
+                            <option value="28 Entertainment">28 Entertainment</option>
+                            <option value="Plainview Pictures">Plainview Pictures</option>
+                            <option value="Dark Frames">Dark Frames</option>
+                            <option value="North Poplar Pictures">North Poplar Pictures</option>
+                            <option value="Gravity Arch">Gravity Arch</option>
+                            <option value="Phantom Mentor Digital">Phantom Mentor Digital</option>
+                            <option value="Scarlet Sky Productions">Scarlet Sky Productions</option>
+                            <option value="Plexifilm">Plexifilm</option>
+                            <option value="Brothers' Ink Productions">Brothers' Ink Productions</option>
+                            <option value="Four Eyed Monsters">Four Eyed Monsters</option>
+                            <option value="Dog Lover's Symphony">Dog Lover's Symphony</option>
+                            <option value="Cheapo Films">Cheapo Films</option>
+                            <option value="Tag Entertainment">Tag Entertainment</option>
+                            <option value="Synergetic Distribution">Synergetic Distribution</option>
+                            <option value="Artsploitation Films">Artsploitation Films</option>
+                            <option value="Hummingbird Pictures">Hummingbird Pictures</option>
+                            <option value="Reactor 88 Studios">Reactor 88 Studios</option>
+                            <option value="Cortelyou Films">Cortelyou Films</option>
+                            <option value="Feature Presentations Releasing">Feature Presentations Releasing</option>
+                            <option value="Lumiere Productions">Lumiere Productions</option>
+                            <option value="Zell-Koj Studio">Zell-Koj Studio</option>
+                            <option value="MarVista Entertainment">MarVista Entertainment</option>
+                            <option value="Monarch">Monarch</option>
+                            <option value="Running Entertainment">Running Entertainment</option>
+                            <option value="Boll Films">Boll Films</option>
+                            <option value="Kathi Arts">Kathi Arts</option>
+                            <option value="M Star International">M Star International</option>
+                            <option value="Oilrag Productions">Oilrag Productions</option>
+                            <option value="Bullz Eye Productions">Bullz Eye Productions</option>
+                            <option value="ImaginAsian Pictures">ImaginAsian Pictures</option>
+                            <option value="Phantom Pain Films">Phantom Pain Films</option>
+
+
+                        </datalist>
+
+
+
+
+                    </li>
+
+
+
+
+
+                    <li class="nav-item ml-3">
+
+                        <!-- <label for="start">Start date:</label>
+
+                    <input type="date" id="startDate2" name="trip-start"
+                    value="1977-05-23">
+                    
+                    
+
+                    <input type="date" id="endDate2" name="trip-start"
+                    value="2020-12-31"   min="2020-12-31" max="2020-12-31"> -->
+
+
+
+                        <div id="time-range ">
+                            <div class="sliders_step1">
+                                <div id="slider-range"></div>
+                            </div>
+
+                            <p> <b> Start Date: </b> <span id="startDate" class="slider-time"> </span> </p>
+
+                            <p> <b>End Date: </b> <span id="endDate" class="slider-time2"> </span>
+                            </p>
+
+
+                        </div>
+
+
+
+                    </li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="#">Code </a></li> -->
+                </ul>
+            </div>
+            <!--/col-->
+
+            <div class="col main pt-5 mt-3">
+
+
+
+
+                <div class="card-group">
+                    <div class="card rounded-lg mx-3">
+                        <div class="card-body">
+                            <h5 class="card-title"> Gross </h5>
+                            <h6 class="card-subtitle mb-2 text-muted"> gross box office earnings (USD) </h6>
+                            <p class="card-number" id="gross"></p>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-lg mx-3">
+                        <div class="card-body">
+                            <h5 class="card-title"> Total Gross </h5>
+                            <h6 class="card-subtitle mb-2 text-muted"> all revenue earnings (USD) </h6>
+                            <p class="card-number" id="totalGross"></p>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-lg mx-3">
+                        <div class="card-body">
+                            <h5 class="card-title"> Films </h5>
+                            <h6 class="card-subtitle mb-2 text-muted"> # of films released </h6>
+                            <p class="card-number" id="numberOfFilms"></p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+                <div class="row mb-3">
+
+
+                </div>
+                <!--/row-->
+
+
+
+                <div class="row justify-content-md-center align-items-start">
+
+                    <div class="col-7">
+
+
+                    </div>
+                    <div class="col-5 ">
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+
+                </div>
+
+
+
+                <div class="row">
+
+                    <div class="col main ">
+
+
+                        <div class="card-group">
+
+                            <div class="card rounded-lg mx-3">
+                                <div class="card-body">
+
+                                    <div id="grossChart"></div>
+
+                                </div>
+
+                            </div>
+
+
+
+
+                            <div class="card rounded-lg mx-3">
+                                <div class="card-body">
+
+                                    <figure class="highcharts-figure">
+                                        <div id="bullet1"></div>
+                                        <div id="bullet4"></div>
+                                        <div id="bullet2"></div>
+                                        <div id="bullet3"></div>
+                                        <p class="highcharts-description">
+                                        </p>
+                                    </figure>
+
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+                </div>
+
+
+
+
+
+                <div class="row mt-4 justify-content-md-center">
+
+
+
+                    <div class="col-8">
+
+                        <div class="card rounded-lg ml-3 ">
+
+                            <div class="card-body">
+
+
+
+                                <figure class="highcharts-figure">
+                                    <div id="bubbleChart"></div>
+                                    <p class="highcharts-description">
+                                    </p>
+                                </figure>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-4">
+
+                        <div class="card mr-2">
+                            <img class="card-img-top img-fluid" id="movieCard">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <b> <span id="maxTitle"> </span> </b> - Highest Grossing Film</h4>
+
+                                    <table class="table">
+
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Gross</th>
+                                                <td id="maxGross"> </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row">Release Date</th>
+                                                <td id="maxDate"> </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"># of theaters </th>
+                                                <td id="maxTheater"> </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Studio </th>
+                                                <td id="maxStudio"> </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+
+
+
+
+
+
+                                    <!-- <a href="#" class="btn ">Button</a> -->
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+                <div class="row mt-4">
+
+                    <div class="col main ">
+
+
+                        <div class="card-group">
+
+                            <div class="card rounded-lg mx-3">
+                                <div class="card-body">
+
+                                    
+                       
+                                    <div id="seasonGraph"></div>
+
+
+
+
+
+
+                                </div>
+
+                            </div>
+
+
+
+
+                            <div class="card rounded-lg mx-3">
+                                <div class="card-body">
+
+                                    <figure class="highcharts-figure">
+                                        <div id="pieGraph"></div>
+                                        <p class="highcharts-description">
+                                        </p>
+                                      </figure>
+
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+            <!--/main col-->
+        </div>
+
+    </div>
+    <!--/.container-->
+
+    <br> 
+    <footer class="container-fluid ">
+        <p class="text-right small">©2020 Anne Xu</p>
+    </footer>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Modal</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>This is a dashboard layout for Bootstrap 4. This is an example of the Modal component which you
+                        can use to show content.
+                        Any content can be placed inside the modal and it can use the Bootstrap grid classes.</p>
+                    <p>
+                        <a href="https://www.codeply.com/go/KrUO8QpyXP" target="_ext">Grab the code at Codeply</a>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary-outline" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
